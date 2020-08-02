@@ -1,13 +1,13 @@
 provider "aws" {
   profile = "default"
   version = "~> 2.70"
-  region  = "us-east-2"
+  region  = var.region
 }
 
 resource "aws_instance" "ohio-ubuntu-pub" {
-  ami           = "ami-0a63f96e85105c6d3"
-  instance_type = "t2.micro"
-  key_name      = "ubuntu_keygen"
+  ami           = var.ami_name
+  instance_type = var.instance_type
+  key_name      = var.key_name
   subnet_id     = aws_subnet.tf-ohio-public.id
   associate_public_ip_address = true  
   vpc_security_group_ids = [aws_security_group.tf-ohio-pub.id]
@@ -20,8 +20,8 @@ resource "aws_instance" "ohio-ubuntu-pub" {
   
   connection {
     type = "ssh"
-    user = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
+    user = var.user_name
+    private_key = var.private_key_path
     host = self.public_ip
  }
 
