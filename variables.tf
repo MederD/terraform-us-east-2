@@ -1,7 +1,9 @@
 variable "key_name" {}
 variable "user_name" {}
 variable "cidr_block" {}
-variable "region" {}
+variable "region" {
+    default = "us-east-2"
+}
 
 variable "ami_name" {
     default = "ami-0a63f96e85105c6d3"
