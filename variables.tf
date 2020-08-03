@@ -16,8 +16,3 @@ variable "instance_type" {
     type    = string
     description = "This will be instance type"
   }
-
-variable "private_key_path" {
-    type = string
-    default = "~/.ssh/id_rsa"
-  }

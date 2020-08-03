@@ -21,7 +21,7 @@ resource "aws_instance" "ohio-ubuntu-pub" {
   connection {
     type = "ssh"
     user = var.user_name
-    private_key = var.private_key_path
+    private_key = file("~/.ssh/id_rsa")
     host = self.public_ip
  }
 
@@ -33,6 +33,7 @@ resource "aws_instance" "ohio-ubuntu-pub" {
    ]
  } 
  }
+ 
  output "instance_ip_addr" {
   value       = aws_instance.ohio-ubuntu-pub.private_ip
   description = "The private IP address of the main server instance."
